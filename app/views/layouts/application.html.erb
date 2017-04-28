@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Secrets</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <p>
+        <%= flash[:success] unless flash[:success].blank? %>
+        <%= flash[:error] unless flash[:error].blank? %>
+    </p>
+
+    <% if current_user %>
+        <form action="/sessions/<%= current_user.id %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Log out">
+        </form>
+
+        <form action="/users/<%= current_user.id  %>/edit" method="get">
+            <input type="hidden" name="authenticity_token" value=" form_authenticity_token ">
+            <input type="submit" name="edit" value="Edit my profile">
+        </form>
+        <%= button_to "Show all users", users_path, :method => "get" %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

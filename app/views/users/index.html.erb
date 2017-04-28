@@ -1,0 +1,8 @@
+<h1>Registered Users</h1>
+
+<% if @users
+    @users.each do |u| %>
+    <p> Name: <%= u.name %> </p>
+    <p> Email: <%= u.email %> </p>
+<% end
+end %>
