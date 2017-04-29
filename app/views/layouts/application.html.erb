@@ -10,10 +10,11 @@
 
   <body>
 
-    <p>
-        <%= flash[:success] unless flash[:success].blank? %>
-        <%= flash[:error] unless flash[:error].blank? %>
-    </p>
+    <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+            <%= msg %>
+        </div>
+    <% end %>
 
     <% if current_user %>
         <form action="/sessions/<%= current_user.id %>" method="post">

@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome, #{user.name}"
       redirect_to "/users/#{user.id}"
     else
-        flash[:errors] = "Email and password combination invalid"
+        flash[:danger] = "Email and password combination invalid"
         redirect_to "/"
     end
   end
